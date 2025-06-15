@@ -56,11 +56,12 @@ jobs:
 
       - name: Package as ZIP
         working-directory: build\bin
-        run: 7z a Aseprite-Windows-Release.zip *
-        shell: cmd
+        run: |
+          powershell Compress-Archive -Path * -DestinationPath Aseprite-Windows-Release.zip
+        shell: powershell
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: aseprite-windows-release
           path: build/bin/Aseprite-Windows-Release.zip
